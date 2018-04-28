@@ -1,19 +1,13 @@
 /***************************************************************************
   This is a library for the BNO055 orientation sensor
-
   Designed specifically to work with the Adafruit BNO055 Breakout.
-
   Pick one up today in the adafruit shop!
   ------> http://www.adafruit.com/products
-
   These sensors use I2C to communicate, 2 pins are required to interface.
-
   Adafruit invests time and resources providing this open source code,
   please support Adafruit andopen-source hardware by purchasing products
   from Adafruit!
-
   Written by KTOWN for Adafruit Industries.
-
   MIT license, all text above must be included in any redistribution
  ***************************************************************************/
 
@@ -467,12 +461,10 @@ void Adafruit_BNO055::getSystemStatus(uint8_t *system_status, uint8_t *self_test
   /* Self Test Results (see section )
      --------------------------------
      1 = test passed, 0 = test failed
-
      Bit 0 = Accelerometer self test
      Bit 1 = Magnetometer self test
      Bit 2 = Gyroscope self test
      Bit 3 = MCU self test
-
      0x0F = all good! */
 
   if (self_test_result != 0)
@@ -927,4 +919,3 @@ bool Adafruit_BNO055::readLen(adafruit_bno055_reg_t reg, byte * buffer, uint8_t 
 uint8_t Adafruit_BNO055::sliceValueIntoRegister(uint8_t value, uint8_t reg, uint8_t mask, uint8_t position) {
     return (reg & ~mask) | ((value << position) & mask);
 }
-

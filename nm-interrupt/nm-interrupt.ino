@@ -21,7 +21,8 @@ void setup(void)
   nm_interrupt = false;
   pinMode(interrupt_pin, INPUT);
   attachInterrupt(digitalPinToInterrupt(interrupt_pin), nm_interrupt_callback, RISING);
-  bno.enableSlowNoMotion(5, 1, NO_MOTION);
+  //bno.enableSlowNoMotion(5, 1, NO_MOTION);
+  bno.enableAnyMotion(255,1);
   bno.enableInterruptsOnXYZ(ENABLE, ENABLE, ENABLE);
   bno.setExtCrystalUse(true);
 }
@@ -57,7 +58,6 @@ void loop(void)
     Serial.println("NM-Interrupt");
     delay(5000);
   }
-  Serial.println("Loop");
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
 
@@ -65,4 +65,3 @@ void nm_interrupt_callback(void)
 {
   nm_interrupt = true;
 }
-

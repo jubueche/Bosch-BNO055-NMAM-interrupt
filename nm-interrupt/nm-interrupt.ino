@@ -22,7 +22,7 @@ void setup(void)
   pinMode(interrupt_pin, INPUT);
   attachInterrupt(digitalPinToInterrupt(interrupt_pin), nm_interrupt_callback, RISING);
   //bno.enableSlowNoMotion(5, 1, NO_MOTION);
-  bno.enableAnyMotion(255,1);
+  bno.enableAnyMotion(255, 1);
   bno.enableInterruptsOnXYZ(ENABLE, ENABLE, ENABLE);
   bno.setExtCrystalUse(true);
 }
@@ -30,15 +30,18 @@ void setup(void)
 void loop(void)
 {
   if (!nm_interrupt) {
-    imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
+    imu::Quaternion quat = bno.getQuat();
 
-    Serial.print("X: ");
-    Serial.print(euler.x());
-    Serial.print(" Y: ");
-    Serial.print(euler.y());
-    Serial.print(" Z: ");
-    Serial.print(euler.z());
-    Serial.print("\t\t");
+    /* Display the quat data */
+    Serial.print("qW: ");
+    Serial.print(quat.w(), 4);
+    Serial.print(" qX: ");
+    Serial.print(quat.y(), 4);
+    Serial.print(" qY: ");
+    Serial.print(quat.x(), 4);
+    Serial.print(" qZ: ");
+    Serial.print(quat.z(), 4);
+    Serial.println("");
 
     uint8_t system, gyro, accel, mag = 0;
     bno.getCalibration(&system, &gyro, &accel, &mag);
